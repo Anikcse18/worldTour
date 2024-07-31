@@ -6,9 +6,11 @@ export default function Countrie({
   countrie,
   handelVistedCountry,
   handelVisitedFlag,
+  handelVisitedTimeZone,
 }) {
-  const { name, flags, cca3, population } = countrie;
+  const { name, flags, cca3, population, timezones } = countrie;
   const [visted, setvisited] = useState(false);
+  // console.log(timezones);
 
   const handelVisited = () => {
     setvisited(!visted);
@@ -41,6 +43,14 @@ export default function Countrie({
         }}
       >
         Mark Visited
+      </button>
+
+      <button
+        onClick={() => {
+          handelVisitedTimeZone(timezones);
+        }}
+      >
+        Time Zone
       </button>
 
       <button onClick={handelVisited}>{visted ? "Visited" : "Go"}</button>

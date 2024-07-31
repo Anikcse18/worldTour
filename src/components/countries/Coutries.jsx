@@ -6,6 +6,7 @@ const Coutries = () => {
   const [countries, setCoutries] = useState([]);
   const [visitedCountry, setVistedCountry] = useState([]);
   const [visitedFlag, setVisitedFlag] = useState([]);
+  const [visitedTimeZone, setvisitedTimeZone] = useState([]);
 
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
@@ -16,12 +17,18 @@ const Coutries = () => {
   const handelVistedCountry = (country) => {
     const newVisitedCountry = [...visitedCountry, country];
     setVistedCountry(newVisitedCountry);
+    console.log(country);
   };
 
   const handelVisitedFlag = (flag) => {
     const newVisitedFlag = [...visitedFlag, flag];
     setVisitedFlag(newVisitedFlag);
-    console.log(visitedFlag);
+    
+  };
+
+  const handelVisitedTimeZone = (timezones) => {
+    const newVisitedTimeZone = [...visitedTimeZone, timezones];
+    setvisitedTimeZone(newVisitedTimeZone);
   };
 
   return (
@@ -44,6 +51,15 @@ const Coutries = () => {
             <img className="img-container" key={index} src={flag} />
           ))}
         </div>
+
+        {/* Visited Time Zone */}
+        <div>
+          <ol>
+            {visitedTimeZone.map((timezone) => (
+              <li>{timezone}</li>
+            ))}
+          </ol>
+        </div>
       </div>
 
       {/* Showcountry */}
@@ -55,6 +71,7 @@ const Coutries = () => {
             countrie={countrie}
             handelVistedCountry={handelVistedCountry}
             handelVisitedFlag={handelVisitedFlag}
+            handelVisitedTimeZone={handelVisitedTimeZone}
           ></Countrie>
         ))}
       </div>
